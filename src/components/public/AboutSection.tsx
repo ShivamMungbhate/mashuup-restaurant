@@ -13,7 +13,7 @@ export default function AboutSection({ restaurant }: AboutSectionProps) {
   const name = restaurant?.name || 'Mashuup';
   const aboutText =
     restaurant?.about ||
-    'Welcome to Mashuup! We are a brand new 100% Pure Veg restaurant and food cart bringing together traditional recipes and modern street-food favorites. Our team selects fresh, quality ingredients to deliver an unforgettable self-service dining experience.';
+    'Welcome to Mashuup! We are a brand new restaurant and food cart bringing together traditional recipes and modern street-food favorites. Our team selects fresh, high-quality ingredients to deliver an unforgettable dining experience.';
   const imgUrl =
     restaurant?.restaurantImage ||
     'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80';
@@ -34,15 +34,15 @@ export default function AboutSection({ restaurant }: AboutSectionProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
             </div>
 
-            {/* Brand Pure Veg Floating Badge */}
+            {/* Quality Floating Badge */}
             <div className="absolute -bottom-6 -right-4 sm:bottom-6 sm:right-6 glass-card p-5 rounded-2xl border border-emerald-500/30 shadow-2xl max-w-xs">
               <div className="flex items-center gap-3">
                 <div className="p-3 rounded-xl bg-emerald-950 text-emerald-400 border border-emerald-500/40">
                   <Leaf className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-extrabold text-white font-serif">100% Pure Veg</h4>
-                  <p className="text-xs text-emerald-300/90 font-medium">Self Service & Fresh Taste</p>
+                  <h4 className="text-lg font-extrabold text-white font-serif">Fresh & Hygienic</h4>
+                  <p className="text-xs text-emerald-300/90 font-medium">Prepared Fresh Daily</p>
                 </div>
               </div>
             </div>
@@ -68,7 +68,7 @@ export default function AboutSection({ restaurant }: AboutSectionProps) {
               <div className="flex items-start gap-3 glass-card p-4 rounded-xl border-amber-500/10">
                 <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-sm font-bold text-white">100% Pure Vegetarian</h4>
+                  <h4 className="text-sm font-bold text-white">Pure Vegetarian Kitchen</h4>
                   <p className="text-xs text-zinc-400">Strictly vegetarian & hygienic</p>
                 </div>
               </div>
@@ -76,8 +76,8 @@ export default function AboutSection({ restaurant }: AboutSectionProps) {
               <div className="flex items-start gap-3 glass-card p-4 rounded-xl border-amber-500/10">
                 <HeartHandshake className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-sm font-bold text-white">Quick Self Service</h4>
-                  <p className="text-xs text-zinc-400">Convenient & fast ordering</p>
+                  <h4 className="text-sm font-bold text-white">Warm Hospitality</h4>
+                  <p className="text-xs text-zinc-400">Friendly & attentive service</p>
                 </div>
               </div>
             </div>

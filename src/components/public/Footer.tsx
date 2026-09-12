@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Utensils, MapPin, Phone, Mail, ShieldLock } from 'lucide-react';
 import InstagramIcon from '@/components/public/InstagramIcon';
+import WhatsAppIcon from '@/components/public/WhatsAppIcon';
 import { Restaurant, OpeningHour } from '@/types';
 
 interface FooterProps {
@@ -76,6 +77,17 @@ export default function Footer({ restaurant, hours }: FooterProps) {
               <p className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-amber-400 shrink-0" />
                 <a href={`tel:${phone}`} className="hover:text-amber-300 font-mono">+91 {phone}</a>
+              </p>
+              <p className="flex items-center gap-2">
+                <WhatsAppIcon className="w-4 h-4 text-emerald-400 shrink-0" />
+                <a
+                  href={`https://wa.me/91${phone.replace(/[^0-9]/g, '')}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-emerald-300 text-emerald-400 font-medium"
+                >
+                  WhatsApp Us
+                </a>
               </p>
               <p className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-amber-400 shrink-0" />

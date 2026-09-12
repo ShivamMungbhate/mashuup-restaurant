@@ -66,10 +66,10 @@ export default function MenuGrid({ categories, initialCategory }: MenuGridProps)
             )}
           </div>
 
-          {/* Pure Veg Banner Pill */}
-          <div className="flex items-center gap-2 bg-emerald-950/90 px-4 py-2 rounded-full border border-emerald-500/40 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+          {/* Menu Category Badge Pill */}
+          <div className="flex items-center gap-2 bg-emerald-950/80 px-4 py-2 rounded-full border border-emerald-500/30 text-emerald-300 text-xs font-bold uppercase tracking-wider">
             <Leaf className="w-4 h-4 text-emerald-400" />
-            <span>100% Pure Vegetarian Menu</span>
+            <span>Pure Veg Menu</span>
           </div>
         </div>
 
@@ -146,10 +146,6 @@ export default function MenuGrid({ categories, initialCategory }: MenuGridProps)
 
                   {/* Top Badges */}
                   <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
-                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-emerald-950/90 text-emerald-300 border border-emerald-500/40 backdrop-blur-md uppercase flex items-center gap-1">
-                      <Leaf className="w-2.5 h-2.5" /> 100% Pure Veg
-                    </span>
-
                     {item.isFeatured && (
                       <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-amber-950/90 text-amber-300 border border-amber-500/40 backdrop-blur-md uppercase flex items-center gap-1">
                         <Sparkles className="w-2.5 h-2.5" /> Popular

@@ -4,6 +4,7 @@ import React from 'react';
 import { Restaurant, OpeningHour } from '@/types';
 import { MapPin, Phone, Mail, Clock, Navigation } from 'lucide-react';
 import InstagramIcon from '@/components/public/InstagramIcon';
+import WhatsAppIcon from '@/components/public/WhatsAppIcon';
 
 interface ContactSectionProps {
   restaurant: Restaurant | null;
@@ -15,6 +16,7 @@ export default function ContactSection({ restaurant, hours }: ContactSectionProp
     restaurant?.address || 'Near Pola Ground, Poonam Chamber, Chhindwara, Madhya Pradesh';
   const phone = restaurant?.phone || '9009310300';
   const email = restaurant?.email || 'mashupfoodcart@gmail.com';
+  const whatsappNumber = `91${phone.replace(/[^0-9]/g, '')}`;
   const instagram =
     restaurant?.instagramUrl ||
     'https://www.instagram.com/mashuupcafe_?stkn=MTE1cGI5bzFxOHFlOA==';
@@ -36,7 +38,7 @@ export default function ContactSection({ restaurant, hours }: ContactSectionProp
             Visit <span className="gold-gradient-text">Mashuup</span>
           </h2>
           <p className="mt-4 text-sm sm:text-base text-zinc-300 font-light">
-            We welcome you for delicious Pure Veg food, drinks, and great moments. Tap below to navigate directly!
+            We welcome you for delicious Pure Veg food, drinks, and great moments. Tap below to navigate directly or chat on WhatsApp!
           </p>
         </div>
 
@@ -67,15 +69,23 @@ export default function ContactSection({ restaurant, hours }: ContactSectionProp
               </div>
             </div>
 
-            {/* Phone */}
+            {/* Phone & WhatsApp */}
             <div className="flex items-start gap-4">
-              <div className="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 shrink-0">
+              <div className="p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 shrink-0">
                 <Phone className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-amber-200 uppercase tracking-wider">Phone / Call Us</h4>
+                <h4 className="text-xs font-bold text-amber-200 uppercase tracking-wider">Phone & WhatsApp</h4>
                 <a href={`tel:${phone}`} className="text-base text-white hover:text-amber-300 mt-1 block font-mono font-bold">
                   +91 {phone}
+                </a>
+                <a
+                  href={`https://wa.me/${whatsappNumber}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs font-bold text-emerald-400 hover:bg-emerald-500 hover:text-zinc-950 transition mt-2 shadow-md"
+                >
+                  <WhatsAppIcon className="w-4 h-4 text-emerald-400" /> Chat on WhatsApp
                 </a>
               </div>
             </div>
@@ -145,9 +155,9 @@ export default function ContactSection({ restaurant, hours }: ContactSectionProp
               </div>
             </div>
 
-            <div className="mt-8 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-center">
-              <p className="text-xs text-amber-200 font-bold uppercase tracking-wider">
-                100% Pure Veg • Self Service Dining
+            <div className="mt-8 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-center">
+              <p className="text-xs text-emerald-300 font-bold uppercase tracking-wider">
+                Fresh & Delicious Pure Veg Food
               </p>
             </div>
           </div>

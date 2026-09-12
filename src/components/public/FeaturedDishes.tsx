@@ -19,8 +19,8 @@ export default function FeaturedDishes({ items }: FeaturedDishesProps) {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-14">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 text-xs font-semibold uppercase tracking-widest mb-3">
-              <Leaf className="w-3.5 h-3.5 text-emerald-400" />
-              100% Pure Veg • Popular Delights
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              Popular Delights
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
               Featured & Popular <span className="gold-gradient-text">Items</span>
@@ -57,10 +57,6 @@ export default function FeaturedDishes({ items }: FeaturedDishesProps) {
 
                   {/* Badges */}
                   <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-                    <span className="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-emerald-950/90 text-emerald-300 border border-emerald-500/40 backdrop-blur-md uppercase tracking-wider flex items-center gap-1">
-                      <Leaf className="w-2.5 h-2.5 text-emerald-400" /> 100% Pure Veg
-                    </span>
-
                     <span className="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-amber-950/80 text-amber-300 border border-amber-500/40 backdrop-blur-md uppercase tracking-wider flex items-center gap-1">
                       <Sparkles className="w-2.5 h-2.5" /> Popular
                     </span>

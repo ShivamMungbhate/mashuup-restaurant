@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ShieldLock, Phone, Leaf } from 'lucide-react';
 import { Restaurant } from '@/types';
+import WhatsAppIcon from './WhatsAppIcon';
 
 interface HeaderProps {
   restaurant?: Restaurant | null;
@@ -33,6 +34,8 @@ export default function Header({ restaurant }: HeaderProps) {
 
   const brandName = restaurant?.name || 'Mashuup';
   const logoUrl = restaurant?.logo || '/logo.png';
+  const phone = restaurant?.phone || '9009310300';
+  const whatsappNumber = `91${phone.replace(/[^0-9]/g, '')}`;
 
   return (
     <header
@@ -52,7 +55,7 @@ export default function Header({ restaurant }: HeaderProps) {
                 {brandName}
               </span>
               <span className="text-[10px] tracking-widest text-emerald-400 uppercase font-bold flex items-center gap-1 mt-0.5">
-                <Leaf className="w-3 h-3 text-emerald-400" /> 100% Pure Veg • Self Service
+                <Leaf className="w-3 h-3 text-emerald-400" /> Pure Veg Restaurant
               </span>
             </div>
           </Link>
@@ -78,11 +81,22 @@ export default function Header({ restaurant }: HeaderProps) {
           </nav>
 
           {/* CTA & Admin Link */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-2.5">
+            <a
+              href={`https://wa.me/${whatsappNumber}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:flex items-center gap-2 text-xs font-bold text-emerald-400 px-3.5 py-2 border border-emerald-500/30 rounded-full hover:bg-emerald-500/10 transition"
+              title="Chat on WhatsApp"
+            >
+              <WhatsAppIcon className="w-3.5 h-3.5 text-emerald-400" />
+              WhatsApp
+            </a>
+
             {restaurant?.phone && (
               <a
                 href={`tel:${restaurant.phone}`}
-                className="hidden lg:flex items-center gap-2 text-xs font-semibold text-amber-300 px-3.5 py-2 border border-amber-500/30 rounded-full hover:bg-amber-500/10 transition font-mono"
+                className="hidden xl:flex items-center gap-2 text-xs font-semibold text-amber-300 px-3.5 py-2 border border-amber-500/30 rounded-full hover:bg-amber-500/10 transition font-mono"
               >
                 <Phone className="w-3.5 h-3.5" />
                 +91 {restaurant.phone}
@@ -107,8 +121,17 @@ export default function Header({ restaurant }: HeaderProps) {
 
           {/* Mobile Hamburger Toggle */}
           <div className="flex md:hidden items-center gap-2">
+            <a
+              href={`https://wa.me/${whatsappNumber}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 text-emerald-400 hover:text-emerald-300"
+              title="WhatsApp"
+            >
+              <WhatsAppIcon className="w-5 h-5" />
+            </a>
             <Link
-              href="/admin"
+              href="/admin/login"
               className="p-2 text-amber-400/70 hover:text-amber-300"
               title="Admin Login"
             >
@@ -157,15 +180,24 @@ export default function Header({ restaurant }: HeaderProps) {
             >
               View Menu
             </Link>
-            {restaurant?.phone && (
+            <div className="grid grid-cols-2 gap-2">
               <a
-                href={`tel:${restaurant.phone}`}
-                className="w-full text-center py-2.5 rounded-xl text-xs font-semibold text-amber-300 bg-amber-500/10 border border-amber-500/20 flex items-center justify-center gap-2 font-mono"
+                href={`tel:${phone}`}
+                className="py-2.5 rounded-xl text-xs font-semibold text-amber-300 bg-amber-500/10 border border-amber-500/20 flex items-center justify-center gap-2 font-mono"
               >
                 <Phone className="w-4 h-4" />
-                Call +91 {restaurant.phone}
+                Call Us
               </a>
-            )}
+              <a
+                href={`https://wa.me/${whatsappNumber}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-2.5 rounded-xl text-xs font-semibold text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center gap-2"
+              >
+                <WhatsAppIcon className="w-4 h-4 text-emerald-400" />
+                WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       )}
