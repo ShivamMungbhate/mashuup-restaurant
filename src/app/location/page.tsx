@@ -4,6 +4,7 @@ import ContactSection from '@/components/public/ContactSection';
 import Footer from '@/components/public/Footer';
 import { prisma } from '@/lib/prisma';
 
+export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function LocationPage() {

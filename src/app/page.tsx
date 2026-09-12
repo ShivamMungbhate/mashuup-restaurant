@@ -10,6 +10,7 @@ import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
 import { ArrowRight, Image as ImageIcon } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
 export const revalidate = 0; // Ensure fresh data on every request
 
 export default async function HomePage() {

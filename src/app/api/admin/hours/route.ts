@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { verifyAdminRequest } from '@/lib/auth';
+import { revalidatePath } from 'next/cache';
 
 export async function GET(req: NextRequest) {
   const admin = await verifyAdminRequest(req);
@@ -76,6 +77,12 @@ export async function PUT(req: NextRequest) {
         updatedHours.push(item);
       }
     }
+
+    revalidatePath('/');
+    revalidatePath('/contact');
+    revalidatePath('/location');
+    revalidatePath('/about');
+    revalidatePath('/menu');
 
     return NextResponse.json({ success: true, hours: updatedHours });
   } catch (error: any) {
