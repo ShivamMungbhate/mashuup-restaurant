@@ -29,7 +29,7 @@ export default function AdminSidebar() {
     { name: 'Contact & Location', href: '/admin/contact', icon: PhoneCall },
     { name: 'Opening Hours', href: '/admin/hours', icon: Clock },
     { name: 'Photo Gallery', href: '/admin/gallery', icon: ImageIcon },
-    { name: 'Admin Users & OTP', href: '/admin/admins', icon: Users },
+    { name: 'Admin Users', href: '/admin/admins', icon: Users },
   ];
 
   const handleLogout = async () => {
