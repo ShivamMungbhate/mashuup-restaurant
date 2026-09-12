@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import path from 'path';
 import fs from 'fs';
+import os from 'os';
 
 const globalForPrisma = global as unknown as { prisma?: PrismaClient };
 
@@ -12,11 +13,11 @@ function getDatabaseUrl() {
     return envUrl;
   }
 
-  // On Vercel serverless environment, the bundle directory is read-only.
-  // We copy dev.db to /tmp/dev.db which is fully writeable in AWS Lambda / Vercel functions.
+  // On Vercel serverless environment or production, the bundle directory is read-only.
+  // We copy dev.db to a writeable temp directory (e.g. /tmp/mashuup_dev.db in AWS Lambda / Vercel).
   if (process.env.VERCEL || (process.env.NODE_ENV === 'production' && typeof window === 'undefined')) {
     try {
-      const tmpDbPath = '/tmp/dev.db';
+      const tmpDbPath = path.join(os.tmpdir(), 'mashuup_dev.db');
       const bundledDbPath = path.join(process.cwd(), 'prisma', 'dev.db');
 
       if (!fs.existsSync(tmpDbPath) && fs.existsSync(bundledDbPath)) {
@@ -27,7 +28,7 @@ function getDatabaseUrl() {
         return `file:${tmpDbPath}`;
       }
     } catch (e) {
-      console.warn('Could not copy SQLite database to /tmp:', e);
+      console.warn('Could not copy SQLite database to temp dir:', e);
     }
   }
 
