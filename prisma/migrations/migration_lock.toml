@@ -1,0 +1,2 @@
+# Provider used in this workspace: postgresql
+provider = "postgresql"
