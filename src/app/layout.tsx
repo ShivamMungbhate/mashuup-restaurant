@@ -2,29 +2,31 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'THE OLIVE TABLE | Fine Dining & Artisanal Cuisine',
+  title: 'Mashuup | 100% Pure Veg Restaurant – Chhindwara',
   description:
-    'Experience contemporary Mediterranean dining at The Olive Table. Fresh organic ingredients, wood-fired dishes, and an incredible welcoming atmosphere.',
+    'Welcome to Mashuup – a 100% Pure Veg restaurant in Chhindwara serving fresh grilled pizzas, burgers, sandwiches, thick shakes, beverages, and crispy snacks.',
   keywords: [
-    'Restaurant',
-    'Fine Dining',
-    'The Olive Table',
-    'Mediterranean Cuisine',
-    'Artisanal Food',
-    'Menu',
-    'Reservations',
+    'Mashuup',
+    'Pure Veg Restaurant',
+    'Chhindwara',
+    'Vegetarian Food',
+    'Pizza',
+    'Burger',
+    'Thick Shakes',
+    'Sandwiches',
+    'Chhindwara Restaurant',
   ],
   openGraph: {
-    title: 'THE OLIVE TABLE | Fine Dining & Artisanal Cuisine',
+    title: 'Mashuup | 100% Pure Veg Restaurant – Chhindwara',
     description:
-      'Contemporary restaurant serving carefully crafted dishes made with fresh ingredients.',
+      'Fresh grilled pizzas, burgers, sandwiches, thick shakes and more. 100% Pure Veg. Open daily 11 AM – 11 PM.',
     type: 'website',
     images: [
       {
         url: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
         width: 1200,
         height: 630,
-        alt: 'The Olive Table Restaurant Interior',
+        alt: 'Mashuup Restaurant – Pure Veg Chhindwara',
       },
     ],
   },
@@ -36,8 +38,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className="bg-[#0f140e] text-[#f4e6c9] antialiased selection:bg-amber-500 selection:text-zinc-950">
+    <html lang="en" className="scroll-smooth">
+      <body className="bg-white text-green-900 antialiased selection:bg-green-700 selection:text-white">
         {children}
       </body>
     </html>

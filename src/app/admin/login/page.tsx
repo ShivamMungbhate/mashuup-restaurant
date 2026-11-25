@@ -2,7 +2,7 @@
 
 import React, { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { ShieldLock, KeyRound, Mail, Eye, EyeOff, AlertCircle, ArrowLeft } from 'lucide-react';
+import { ShieldLock, KeyRound, Mail, Eye, EyeOff, AlertCircle, ArrowLeft, Leaf } from 'lucide-react';
 import Link from 'next/link';
 
 function LoginForm() {
@@ -20,20 +20,14 @@ function LoginForm() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-
     try {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-
       const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || 'Login failed');
-      }
-
+      if (!res.ok) throw new Error(data.error || 'Login failed');
       router.push(from);
       router.refresh();
     } catch (err: any) {
@@ -44,24 +38,24 @@ function LoginForm() {
   };
 
   return (
-    <div className="max-w-md w-full glass-card p-8 rounded-3xl border border-amber-500/30 shadow-2xl space-y-6">
-      {/* Header Icon */}
+    <div className="max-w-md w-full bg-white rounded-3xl shadow-2xl shadow-black/30 p-8 space-y-6">
+      {/* Header */}
       <div className="text-center">
-        <div className="w-14 h-14 rounded-2xl gold-gradient-bg flex items-center justify-center text-zinc-950 mx-auto shadow-xl shadow-amber-500/25 mb-4">
+        <div className="w-14 h-14 rounded-2xl bg-green-800 flex items-center justify-center text-white mx-auto shadow-xl mb-4">
           <ShieldLock className="w-7 h-7" />
         </div>
-        <h1 className="text-2xl font-black text-white uppercase tracking-tight">
-          Owner <span className="gold-gradient-text">Portal</span>
+        <h1 className="text-2xl font-black text-green-900 uppercase tracking-tight">
+          Owner Portal
         </h1>
-        <p className="text-xs text-amber-200/70 font-light mt-1">
+        <p className="text-xs text-gray-500 font-light mt-1">
           Log in to manage Mashuup restaurant menu, details, gallery, and hours
         </p>
       </div>
 
-      {/* Error Alert */}
+      {/* Error */}
       {error && (
-        <div className="p-3.5 rounded-xl bg-rose-950/80 border border-rose-500/40 text-rose-200 text-xs flex items-center gap-2">
-          <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+        <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
+          <AlertCircle className="w-4 h-4 text-red-500 shrink-0" />
           <span>{error}</span>
         </div>
       )}
@@ -69,40 +63,40 @@ function LoginForm() {
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-wider text-amber-200/80 mb-1">
+          <label className="block text-[11px] font-bold uppercase tracking-wider text-green-800 mb-1">
             Admin Email Address
           </label>
           <div className="relative">
-            <Mail className="w-4 h-4 text-amber-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Mail className="w-4 h-4 text-green-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your admin email"
-              className="w-full bg-zinc-950/90 border border-amber-500/30 rounded-xl pl-10 pr-4 py-3 text-xs text-amber-100 placeholder-zinc-500 focus:outline-none focus:border-amber-400 transition"
+              className="w-full bg-green-50 border border-green-200 rounded-xl pl-10 pr-4 py-3 text-xs text-green-900 placeholder-green-400 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-100 transition"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-wider text-amber-200/80 mb-1">
+          <label className="block text-[11px] font-bold uppercase tracking-wider text-green-800 mb-1">
             Password
           </label>
           <div className="relative">
-            <KeyRound className="w-4 h-4 text-amber-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <KeyRound className="w-4 h-4 text-green-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type={showPassword ? 'text' : 'password'}
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full bg-zinc-950/90 border border-amber-500/30 rounded-xl pl-10 pr-10 py-3 text-xs text-amber-100 placeholder-zinc-500 focus:outline-none focus:border-amber-400 transition font-mono"
+              className="w-full bg-green-50 border border-green-200 rounded-xl pl-10 pr-10 py-3 text-xs text-green-900 placeholder-green-400 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-100 transition font-mono"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-amber-300"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-green-400 hover:text-green-700"
             >
               {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
             </button>
@@ -112,7 +106,7 @@ function LoginForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider text-zinc-950 gold-gradient-bg shadow-xl shadow-amber-500/20 hover:scale-[1.02] active:scale-[0.98] transition disabled:opacity-50"
+          className="w-full py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-green-800 hover:bg-green-700 shadow-lg shadow-green-800/20 hover:scale-[1.02] active:scale-[0.98] transition disabled:opacity-50"
         >
           {loading ? 'Authenticating...' : 'Sign In to Dashboard'}
         </button>
@@ -123,16 +117,30 @@ function LoginForm() {
 
 export default function AdminLoginPage() {
   return (
-    <div className="min-h-screen bg-[#0f140e] flex flex-col justify-center items-center p-4 relative overflow-hidden">
-      {/* Back to website button */}
+    <div
+      className="min-h-screen flex flex-col justify-center items-center p-4 relative overflow-hidden"
+      style={{ background: 'linear-gradient(135deg, #0d4a1f 0%, #145a28 60%, #1a7a35 100%)' }}
+    >
+      {/* Decorative circles */}
+      <div className="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none opacity-10"
+        style={{ background: 'radial-gradient(circle, #4ade80, transparent)', transform: 'translate(30%,-30%)' }} />
+      <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full pointer-events-none opacity-10"
+        style={{ background: 'radial-gradient(circle, #22a04a, transparent)', transform: 'translate(-30%,30%)' }} />
+
+      {/* Back link */}
       <Link
         href="/"
-        className="absolute top-6 left-6 inline-flex items-center gap-2 text-xs font-semibold text-amber-300/80 hover:text-amber-200 px-4 py-2 rounded-full glass-card border-amber-500/20"
+        className="absolute top-6 left-6 inline-flex items-center gap-2 text-xs font-semibold text-white/80 hover:text-white px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur transition"
       >
-        <ArrowLeft className="w-4 h-4" /> Back to Public Website
+        <ArrowLeft className="w-4 h-4" /> Back to Website
       </Link>
 
-      <Suspense fallback={<div className="text-xs text-amber-300">Loading Login Portal...</div>}>
+      {/* Brand badge */}
+      <div className="mb-6 flex items-center gap-2 text-white/80 text-xs font-bold uppercase tracking-widest">
+        <Leaf className="w-4 h-4 text-green-300" /> Mashuup Admin Portal
+      </div>
+
+      <Suspense fallback={<div className="text-xs text-white/70">Loading Portal...</div>}>
         <LoginForm />
       </Suspense>
     </div>

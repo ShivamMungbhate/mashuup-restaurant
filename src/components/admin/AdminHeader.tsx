@@ -16,45 +16,43 @@ export default function AdminHeader({ title, subtitle }: AdminHeaderProps) {
     fetch('/api/auth/me')
       .then((res) => res.json())
       .then((data) => {
-        if (data.authenticated && data.user) {
-          setAdminUser(data.user);
-        }
+        if (data.authenticated && data.user) setAdminUser(data.user);
       })
       .catch(() => {});
   }, []);
 
   return (
-    <header className="bg-[#121811] border-b border-amber-500/15 px-6 py-4 flex items-center justify-between">
+    <header className="bg-white border-b border-green-100 shadow-sm px-6 py-4 flex items-center justify-between">
       <div>
-        <h1 className="text-xl font-bold text-white tracking-tight">{title}</h1>
+        <h1 className="text-xl font-bold text-green-900 tracking-tight">{title}</h1>
         {subtitle ? (
-          <p className="text-xs text-amber-200/70 font-light mt-0.5">{subtitle}</p>
+          <p className="text-xs text-gray-500 font-light mt-0.5">{subtitle}</p>
         ) : (
           adminUser && (
-            <p className="text-xs text-amber-200/70 font-light mt-0.5">
-              Logged in as <strong className="text-amber-100">{adminUser.name}</strong> ({adminUser.email})
+            <p className="text-xs text-gray-500 font-light mt-0.5">
+              Logged in as <strong className="text-green-800">{adminUser.name}</strong> ({adminUser.email})
             </p>
           )
         )}
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-3">
         <Link
           href="/"
           target="_blank"
-          className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-amber-300 bg-amber-500/10 border border-amber-500/20 hover:bg-amber-500/20 transition"
+          className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-green-700 bg-green-50 border border-green-200 hover:bg-green-100 transition"
         >
           <ExternalLink className="w-3.5 h-3.5" />
           Preview Website
         </Link>
 
-        <div className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-zinc-950 border border-amber-500/20 shadow-md">
-          <div className="w-6 h-6 rounded-full gold-gradient-bg text-zinc-950 flex items-center justify-center font-bold text-[10px]">
+        <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-green-50 border border-green-200 shadow-sm">
+          <div className="w-6 h-6 rounded-full bg-green-800 text-white flex items-center justify-center font-bold text-[10px]">
             <User className="w-3.5 h-3.5" />
           </div>
-          <span className="text-xs font-bold text-amber-100 flex items-center gap-1">
+          <span className="text-xs font-bold text-green-900 flex items-center gap-1">
             {adminUser ? adminUser.name : 'Owner Admin'}{' '}
-            <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+            <ShieldCheck className="w-3.5 h-3.5 text-green-600" />
           </span>
         </div>
       </div>
