@@ -32,7 +32,7 @@ async function main() {
         'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80',
       restaurantImage:
         'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
-      logo: '/logo.jpg',
+      logo: '/logo-circle.jpg',
       address: 'Near Pola Ground, Poonam Chamber, Chhindwara, Madhya Pradesh',
       phone: '9009310300',
       email: 'mashupfoodcart@gmail.com',

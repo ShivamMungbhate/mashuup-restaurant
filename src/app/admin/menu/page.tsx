@@ -253,17 +253,17 @@ export default function AdminMenuPage() {
 
       <div className="p-6 max-w-7xl mx-auto space-y-6">
         {/* Top Controls Bar */}
-        <div className="glass-card p-4 rounded-3xl border-amber-500/20 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="bg-white rounded-3xl border border-gray-200 shadow-sm p-4 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
             {/* Search */}
             <div className="relative w-full sm:w-64">
-              <Search className="w-4 h-4 text-amber-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-green-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 placeholder="Search dish name..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-zinc-950/80 border border-amber-500/30 rounded-full pl-10 pr-4 py-2 text-xs text-amber-100 placeholder-zinc-500 focus:outline-none focus:border-amber-400"
+                className="w-full bg-gray-50 border border-gray-200 rounded-full pl-10 pr-4 py-2 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-green-500"
               />
             </div>
 
@@ -271,7 +271,7 @@ export default function AdminMenuPage() {
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="w-full sm:w-auto bg-zinc-950/80 border border-amber-500/30 rounded-full px-4 py-2 text-xs text-amber-100 focus:outline-none focus:border-amber-400"
+              className="w-full sm:w-auto bg-gray-50 border border-gray-200 rounded-full px-4 py-2 text-sm text-gray-800 focus:outline-none focus:border-green-500"
             >
               <option value="all">All Categories ({items.length})</option>
               {categories.map((c) => (
@@ -284,28 +284,28 @@ export default function AdminMenuPage() {
 
           <button
             onClick={openAddModal}
-            className="w-full md:w-auto px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-zinc-950 gold-gradient-bg shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 hover:scale-105 transition"
+            className="w-full md:w-auto px-5 py-2.5 rounded-full text-sm font-bold bg-green-600 hover:bg-green-700 text-white shadow flex items-center justify-center gap-2 transition"
           >
             <Plus className="w-4 h-4" /> Add Menu Item
           </button>
         </div>
 
         {/* Menu Data Table */}
-        <div className="glass-card rounded-3xl border-amber-500/20 overflow-hidden">
+        <div className="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
           {loading ? (
-            <div className="p-12 text-center text-xs text-amber-200">Loading menu data...</div>
+            <div className="p-12 text-center text-sm text-green-700">Loading menu data...</div>
           ) : filteredItems.length === 0 ? (
             <div className="p-12 text-center space-y-3">
-              <UtensilsCrossed className="w-10 h-10 text-amber-400/40 mx-auto" />
-              <p className="text-sm font-bold text-white">No menu items found</p>
-              <p className="text-xs text-zinc-400">Click "Add Menu Item" above to create one.</p>
+              <UtensilsCrossed className="w-10 h-10 text-green-300 mx-auto" />
+              <p className="text-sm font-bold text-gray-700">No menu items found</p>
+              <p className="text-xs text-gray-400">Click "Add Menu Item" above to create one.</p>
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs">
+              <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="border-b border-amber-500/15 text-amber-200/70 uppercase text-[10px] tracking-wider bg-zinc-950/50">
-                    <th className="py-4 px-4">Item & Image</th>
+                  <tr className="border-b border-gray-100 text-xs text-gray-500 uppercase tracking-wider bg-gray-50">
+                    <th className="py-4 px-4">Item &amp; Image</th>
                     <th className="py-4 px-4">Category</th>
                     <th className="py-4 px-4">Price</th>
                     <th className="py-4 px-4">Dietary</th>
@@ -314,9 +314,9 @@ export default function AdminMenuPage() {
                     <th className="py-4 px-4 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5 text-zinc-300">
+                <tbody className="divide-y divide-gray-100 text-gray-700">
                   {filteredItems.map((item) => (
-                    <tr key={item.id} className="hover:bg-white/5 transition">
+                    <tr key={item.id} className="hover:bg-green-50/40 transition">
                       <td className="py-3 px-4 flex items-center gap-3">
                         <img
                           src={
@@ -324,31 +324,31 @@ export default function AdminMenuPage() {
                             'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=100&q=80'
                           }
                           alt={item.name}
-                          className="w-10 h-10 rounded-xl object-cover border border-amber-500/20"
+                          className="w-10 h-10 rounded-xl object-cover border border-gray-200 shrink-0"
                         />
                         <div>
-                          <p className="font-bold text-white text-sm">{item.name}</p>
-                          <p className="text-[11px] text-zinc-400 line-clamp-1 max-w-xs">
+                          <p className="font-semibold text-gray-900 text-sm">{item.name}</p>
+                          <p className="text-xs text-gray-400 line-clamp-1 max-w-xs">
                             {item.description}
                           </p>
                         </div>
                       </td>
 
-                      <td className="py-3 px-4 text-amber-200/80 font-medium">
+                      <td className="py-3 px-4 text-green-700 font-medium text-xs">
                         {item.category?.name || 'Unassigned'}
                       </td>
 
-                      <td className="py-3 px-4 font-mono font-bold text-amber-300">
-                        ${item.price.toFixed(2)}
+                      <td className="py-3 px-4 font-mono font-bold text-green-700">
+                        ₹{item.price.toFixed(0)}
                       </td>
 
                       <td className="py-3 px-4">
                         {item.isVeg ? (
-                          <span className="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-emerald-950 text-emerald-300 border border-emerald-500/30">
+                          <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700 border border-green-300">
                             Veg
                           </span>
                         ) : (
-                          <span className="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-rose-950 text-rose-300 border border-rose-500/30">
+                          <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-red-100 text-red-700 border border-red-300">
                             Non-Veg
                           </span>
                         )}
@@ -357,20 +357,16 @@ export default function AdminMenuPage() {
                       <td className="py-3 px-4 text-center">
                         <button
                           onClick={() => handleToggleAvailability(item)}
-                          className={`px-3 py-1 rounded-full text-[11px] font-bold transition inline-flex items-center gap-1 ${
+                          className={`px-3 py-1 rounded-full text-xs font-bold transition inline-flex items-center gap-1 ${
                             item.isAvailable
-                              ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                              : 'bg-rose-500/20 text-rose-400 border border-rose-500/40'
+                              ? 'bg-green-100 text-green-700 border border-green-300'
+                              : 'bg-red-100 text-red-600 border border-red-200'
                           }`}
                         >
                           {item.isAvailable ? (
-                            <>
-                              <Check className="w-3 h-3" /> Available
-                            </>
+                            <><Check className="w-3 h-3" /> Available</>
                           ) : (
-                            <>
-                              <X className="w-3 h-3" /> Unavailable
-                            </>
+                            <><X className="w-3 h-3" /> Hidden</>
                           )}
                         </button>
                       </td>
@@ -380,26 +376,26 @@ export default function AdminMenuPage() {
                           onClick={() => handleToggleFeatured(item)}
                           className={`p-1.5 rounded-xl transition ${
                             item.isFeatured
-                              ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
-                              : 'text-zinc-600 hover:text-amber-400'
+                              ? 'bg-amber-100 text-amber-600 border border-amber-300'
+                              : 'text-gray-300 hover:text-amber-500'
                           }`}
-                          title="Toggle Popular/Featured"
+                          title="Toggle Featured"
                         >
                           <Sparkles className="w-4 h-4" />
                         </button>
                       </td>
 
-                      <td className="py-3 px-4 text-right space-x-2">
+                      <td className="py-3 px-4 text-right space-x-1">
                         <button
                           onClick={() => openEditModal(item)}
-                          className="p-2 rounded-xl text-amber-300 hover:bg-amber-500/20 transition"
+                          className="p-2 rounded-xl text-blue-500 hover:bg-blue-50 border border-transparent hover:border-blue-200 transition"
                           title="Edit Item"
                         >
                           <Edit2 className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => setDeletingId(item.id)}
-                          className="p-2 rounded-xl text-rose-400 hover:bg-rose-950 transition"
+                          className="p-2 rounded-xl text-red-400 hover:bg-red-50 border border-transparent hover:border-red-200 transition"
                           title="Delete Item"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -416,24 +412,24 @@ export default function AdminMenuPage() {
 
       {/* Add / Edit Item Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-          <div className="glass-card max-w-xl w-full p-6 rounded-3xl border border-amber-500/30 shadow-2xl relative my-8">
+        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white max-w-xl w-full p-7 rounded-3xl border border-gray-200 shadow-2xl relative my-8">
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-5 right-5 text-zinc-400 hover:text-white transition"
+              className="absolute top-5 right-5 text-gray-400 hover:text-gray-700 transition"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <h2 className="text-xl font-extrabold text-white mb-6 flex items-center gap-2">
-              <UtensilsCrossed className="w-5 h-5 text-amber-400" />
+            <h2 className="text-lg font-extrabold text-gray-900 mb-5 flex items-center gap-2">
+              <UtensilsCrossed className="w-5 h-5 text-green-600" />
               {editingItem ? 'Edit Menu Item' : 'Add New Menu Item'}
             </h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Name */}
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-amber-200/80 mb-1">
+                <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">
                   Dish Name *
                 </label>
                 <input
@@ -441,22 +437,22 @@ export default function AdminMenuPage() {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="e.g. Truffle Mushroom Bruschetta"
-                  className="w-full bg-zinc-950/90 border border-amber-500/30 rounded-xl px-4 py-2.5 text-xs text-amber-100 placeholder-zinc-500 focus:outline-none focus:border-amber-400"
+                  placeholder="e.g. Paneer Tikka Pizza"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500"
                 />
               </div>
 
               {/* Category & Price */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-amber-200/80 mb-1">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">
                     Category *
                   </label>
                   <select
                     required
                     value={formData.categoryId}
                     onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
-                    className="w-full bg-zinc-950/90 border border-amber-500/30 rounded-xl px-3 py-2.5 text-xs text-amber-100 focus:outline-none focus:border-amber-400"
+                    className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-800 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500"
                   >
                     {categories.map((c) => (
                       <option key={c.id} value={c.id}>
@@ -467,8 +463,8 @@ export default function AdminMenuPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-amber-200/80 mb-1">
-                    Price ($) *
+                  <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">
+                    Price (₹) *
                   </label>
                   <input
                     type="number"
@@ -476,29 +472,29 @@ export default function AdminMenuPage() {
                     required
                     value={formData.price}
                     onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                    placeholder="18.50"
-                    className="w-full bg-zinc-950/90 border border-amber-500/30 rounded-xl px-4 py-2.5 text-xs text-amber-100 placeholder-zinc-500 focus:outline-none focus:border-amber-400 font-mono"
+                    placeholder="99"
+                    className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 font-mono"
                   />
                 </div>
               </div>
 
               {/* Description */}
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-amber-200/80 mb-1">
+                <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">
                   Description
                 </label>
                 <textarea
                   rows={3}
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  placeholder="Ingredients and culinary notes..."
-                  className="w-full bg-zinc-950/90 border border-amber-500/30 rounded-xl px-4 py-2.5 text-xs text-amber-100 placeholder-zinc-500 focus:outline-none focus:border-amber-400"
+                  placeholder="Short description of the dish..."
+                  className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500"
                 />
               </div>
 
               {/* Food Image Upload & URL */}
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-amber-200/80 mb-1">
+                <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">
                   Food Image
                 </label>
                 <div className="flex items-center gap-3">
@@ -506,7 +502,7 @@ export default function AdminMenuPage() {
                     <img
                       src={formData.image}
                       alt="Preview"
-                      className="w-12 h-12 rounded-xl object-cover border border-amber-500/30 shrink-0"
+                      className="w-12 h-12 rounded-xl object-cover border border-gray-200 shrink-0"
                     />
                   )}
                   <input
@@ -514,9 +510,9 @@ export default function AdminMenuPage() {
                     value={formData.image}
                     onChange={(e) => setFormData({ ...formData, image: e.target.value })}
                     placeholder="Image URL or upload file..."
-                    className="flex-1 bg-zinc-950/90 border border-amber-500/30 rounded-xl px-4 py-2.5 text-xs text-amber-100 placeholder-zinc-500 focus:outline-none focus:border-amber-400"
+                    className="flex-1 border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-green-500"
                   />
-                  <label className="px-4 py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold cursor-pointer hover:bg-amber-500/20 transition shrink-0 flex items-center gap-1.5">
+                  <label className="px-4 py-2.5 rounded-xl bg-green-50 border border-green-200 text-green-700 text-sm font-semibold cursor-pointer hover:bg-green-100 transition shrink-0 flex items-center gap-1.5">
                     <Upload className="w-3.5 h-3.5" />
                     {uploadingImage ? 'Uploading...' : 'Upload'}
                     <input
@@ -531,49 +527,49 @@ export default function AdminMenuPage() {
 
               {/* Toggles */}
               <div className="grid grid-cols-3 gap-3 pt-2">
-                <label className="flex items-center gap-2 p-3 rounded-xl bg-zinc-950/80 border border-amber-500/20 cursor-pointer">
+                <label className="flex items-center gap-2 p-3 rounded-xl bg-gray-50 border border-gray-200 cursor-pointer hover:bg-green-50 transition">
                   <input
                     type="checkbox"
                     checked={formData.isVeg}
                     onChange={(e) => setFormData({ ...formData, isVeg: e.target.checked })}
-                    className="rounded accent-amber-500"
+                    className="rounded accent-green-600"
                   />
-                  <span className="text-xs font-semibold text-white">Vegetarian</span>
+                  <span className="text-xs font-semibold text-gray-700">Vegetarian</span>
                 </label>
 
-                <label className="flex items-center gap-2 p-3 rounded-xl bg-zinc-950/80 border border-amber-500/20 cursor-pointer">
+                <label className="flex items-center gap-2 p-3 rounded-xl bg-gray-50 border border-gray-200 cursor-pointer hover:bg-green-50 transition">
                   <input
                     type="checkbox"
                     checked={formData.isAvailable}
                     onChange={(e) => setFormData({ ...formData, isAvailable: e.target.checked })}
-                    className="rounded accent-amber-500"
+                    className="rounded accent-green-600"
                   />
-                  <span className="text-xs font-semibold text-white">Available</span>
+                  <span className="text-xs font-semibold text-gray-700">Available</span>
                 </label>
 
-                <label className="flex items-center gap-2 p-3 rounded-xl bg-zinc-950/80 border border-amber-500/20 cursor-pointer">
+                <label className="flex items-center gap-2 p-3 rounded-xl bg-gray-50 border border-gray-200 cursor-pointer hover:bg-green-50 transition">
                   <input
                     type="checkbox"
                     checked={formData.isFeatured}
                     onChange={(e) => setFormData({ ...formData, isFeatured: e.target.checked })}
-                    className="rounded accent-amber-500"
+                    className="rounded accent-green-600"
                   />
-                  <span className="text-xs font-semibold text-white">Featured</span>
+                  <span className="text-xs font-semibold text-gray-700">Featured</span>
                 </label>
               </div>
 
               {/* Submit Buttons */}
-              <div className="flex justify-end gap-3 pt-4 border-t border-amber-500/10">
+              <div className="flex justify-end gap-3 pt-4 border-t border-gray-100">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2.5 rounded-xl text-xs font-semibold text-zinc-300 bg-white/5 border border-white/10 hover:bg-white/10 transition"
+                  className="px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 transition"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-zinc-950 gold-gradient-bg shadow-lg shadow-amber-500/20 hover:scale-[1.02] active:scale-[0.98] transition"
+                  className="px-6 py-2.5 rounded-xl text-sm font-bold bg-green-600 hover:bg-green-700 text-white shadow transition"
                 >
                   {editingItem ? 'Save Changes' : 'Create Dish'}
                 </button>

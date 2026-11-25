@@ -32,6 +32,7 @@ type ModalStep = 'details' | 'otp' | 'password';
 export default function AdminUsersPage() {
   const [users, setUsers] = useState<AdminUserItem[]>([]);
   const [currentAdminId, setCurrentAdminId] = useState<string | null>(null);
+  const [isSuperAdmin, setIsSuperAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   // Modal state
@@ -71,6 +72,7 @@ export default function AdminUsersPage() {
       const data = await res.json();
       if (data.users) setUsers(data.users);
       if (data.currentAdminId) setCurrentAdminId(data.currentAdminId);
+      if (data.isSuperAdmin !== undefined) setIsSuperAdmin(data.isSuperAdmin);
     } catch {
       setToast({ type: 'error', message: 'Failed to load admin users list' });
     } finally {
@@ -231,7 +233,9 @@ export default function AdminUsersPage() {
               Active Admin Accounts ({users.length})
             </h2>
             <p className="text-xs text-gray-500 mt-0.5">
-              All admin accounts require OTP email verification
+              {isSuperAdmin
+                ? 'You are the Super Admin — you can add or delete any admin account'
+                : 'You can add new admins. Only the Super Admin can delete accounts.'}
             </p>
           </div>
           <button
@@ -263,11 +267,16 @@ export default function AdminUsersPage() {
                       {u.name.charAt(0).toUpperCase()}
                     </div>
                     <div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 flex-wrap">
                         <h3 className="text-sm font-bold text-gray-800">{u.name}</h3>
                         {isCurrent && (
                           <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-green-100 text-green-700 border border-green-300 uppercase">
                             You
+                          </span>
+                        )}
+                        {u.email.toLowerCase() === 'shivammungbhate671@gmail.com' && (
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-100 text-amber-700 border border-amber-300 uppercase">
+                            Super Admin
                           </span>
                         )}
                       </div>
@@ -277,7 +286,7 @@ export default function AdminUsersPage() {
                       </p>
                     </div>
                   </div>
-                  {!isCurrent && (
+                  {!isCurrent && isSuperAdmin && (
                     <button
                       onClick={() => setDeletingId(u.id)}
                       className="p-2.5 rounded-xl text-red-400 hover:bg-red-50 border border-transparent hover:border-red-200 transition"
