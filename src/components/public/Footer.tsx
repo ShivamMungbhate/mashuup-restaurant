@@ -95,7 +95,7 @@ export default function Footer({ restaurant, hours }: FooterProps) {
             <h4 className="text-xs font-bold uppercase tracking-widest text-green-300">Hours of Operation</h4>
             <div className="space-y-1.5 text-xs">
               {hours && hours.length > 0 ? (
-                hours.slice(0, 3).map((h) => (
+                hours.map((h) => (
                   <div key={h.id} className="flex justify-between text-green-200">
                     <span>{h.day}:</span>
                     <span className="font-mono text-green-100">
