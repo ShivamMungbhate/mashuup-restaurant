@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
 
     if (otpRecord.code.trim() !== inputCode) {
       return NextResponse.json(
-        { error: `Invalid OTP code. You entered "${inputCode}", but expected "${otpRecord.code}".` },
+        { error: 'Invalid OTP code.' },
         { status: 400 }
       );
     }
