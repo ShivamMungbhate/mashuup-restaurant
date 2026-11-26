@@ -339,7 +339,7 @@ export default function AdminMenuPage() {
                       </td>
 
                       <td className="py-3 px-4 font-mono font-bold text-green-700">
-                        â‚¹{item.price.toFixed(0)}
+                        ₹{item.price.toFixed(0)}
                       </td>
 
                       <td className="py-3 px-4">
@@ -464,7 +464,7 @@ export default function AdminMenuPage() {
 
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">
-                    Price (â‚¹) *
+                    Price (₹) *
                   </label>
                   <input
                     type="number"
