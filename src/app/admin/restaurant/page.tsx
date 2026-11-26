@@ -14,12 +14,14 @@ export default function AdminRestaurantPage() {
     about: '',
     heroImage: '',
     restaurantImage: '',
+    logo: '',
   });
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [uploadingHero, setUploadingHero] = useState(false);
   const [uploadingMain, setUploadingMain] = useState(false);
+  const [uploadingLogo, setUploadingLogo] = useState(false);
   const [toast, setToast] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
   useEffect(() => {
@@ -39,9 +41,10 @@ export default function AdminRestaurantPage() {
     }
   };
 
-  const handleFileUpload = async (file: File, field: 'heroImage' | 'restaurantImage') => {
+  const handleFileUpload = async (file: File, field: 'heroImage' | 'restaurantImage' | 'logo') => {
     if (field === 'heroImage') setUploadingHero(true);
     if (field === 'restaurantImage') setUploadingMain(true);
+    if (field === 'logo') setUploadingLogo(true);
     const body = new FormData();
     body.append('file', file);
     try {
@@ -55,6 +58,7 @@ export default function AdminRestaurantPage() {
     } finally {
       setUploadingHero(false);
       setUploadingMain(false);
+      setUploadingLogo(false);
     }
   };
 
@@ -128,6 +132,41 @@ export default function AdminRestaurantPage() {
                 <Upload className="w-5 h-5 text-green-600" />
                 Restaurant Images
               </h2>
+
+              <div>
+                <label className={labelClass}>Restaurant Logo</label>
+                <div className="flex items-center gap-4">
+                  {formData.logo && (
+                    <img
+                      src={formData.logo}
+                      alt="Logo"
+                      className="w-16 h-16 rounded-full object-cover border-2 border-green-200 shrink-0 shadow-sm"
+                    />
+                  )}
+                  <div className="flex-1 flex items-center gap-3">
+                    <input
+                      type="text"
+                      value={formData.logo || ''}
+                      onChange={(e) => setFormData({ ...formData, logo: e.target.value })}
+                      placeholder="/logo-circle.jpg or https://..."
+                      className={inputClass}
+                    />
+                    <label className="px-4 py-2.5 rounded-xl bg-green-50 border border-green-200 text-green-700 text-sm font-semibold cursor-pointer hover:bg-green-100 transition shrink-0 flex items-center gap-1.5 whitespace-nowrap">
+                      <Upload className="w-3.5 h-3.5" />
+                      {uploadingLogo ? 'Uploading...' : 'Upload Logo'}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => e.target.files?.[0] && handleFileUpload(e.target.files[0], 'logo')}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-400 mt-1.5">
+                  Recommended: circular/square logo image. Will appear in the navigation bar.
+                </p>
+              </div>
 
               <div>
                 <label className={labelClass}>Homepage Hero Image</label>

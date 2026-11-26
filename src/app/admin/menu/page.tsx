@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect } from 'react';
 import AdminHeader from '@/components/admin/AdminHeader';
@@ -339,7 +339,7 @@ export default function AdminMenuPage() {
                       </td>
 
                       <td className="py-3 px-4 font-mono font-bold text-green-700">
-                        ₹{item.price.toFixed(0)}
+                        â‚¹{item.price.toFixed(0)}
                       </td>
 
                       <td className="py-3 px-4">
@@ -376,8 +376,8 @@ export default function AdminMenuPage() {
                           onClick={() => handleToggleFeatured(item)}
                           className={`p-1.5 rounded-xl transition ${
                             item.isFeatured
-                              ? 'bg-amber-100 text-amber-600 border border-amber-300'
-                              : 'text-gray-300 hover:text-amber-500'
+                              ? 'bg-yellow-100 text-yellow-500 border border-yellow-300'
+                              : 'text-gray-300 hover:text-yellow-400'
                           }`}
                           title="Toggle Featured"
                         >
@@ -464,7 +464,7 @@ export default function AdminMenuPage() {
 
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5">
-                    Price (₹) *
+                    Price (â‚¹) *
                   </label>
                   <input
                     type="number"
@@ -581,3 +581,4 @@ export default function AdminMenuPage() {
     </div>
   );
 }
+

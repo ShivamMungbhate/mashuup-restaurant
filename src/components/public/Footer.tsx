@@ -37,7 +37,7 @@ export default function Footer({ restaurant, hours }: FooterProps) {
             </Link>
             <p className="text-xs text-green-200 italic">&ldquo;{tagline}&rdquo;</p>
             <p className="text-xs text-green-300/80 leading-relaxed font-light">
-              Crafting fine meals and artisanal culinary experiences with fresh local ingredients.
+              Crafting delicious street food and sips with fresh, quality ingredients — served with warmth every day.
             </p>
           </div>
 
@@ -123,7 +123,7 @@ export default function Footer({ restaurant, hours }: FooterProps) {
         {/* Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-green-400 gap-4">
           <p>© {new Date().getFullYear()} {name}. All rights reserved. 🌿 100% Pure Veg</p>
-          <p className="text-green-500">Built with Next.js, Tailwind CSS &amp; Prisma</p>
+          <p className="text-green-500">Street Eats &amp; Sips · Chhindwara, MP</p>
         </div>
       </div>
     </footer>

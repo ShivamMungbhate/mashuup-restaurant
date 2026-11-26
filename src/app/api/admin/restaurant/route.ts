@@ -40,8 +40,8 @@ export async function PUT(req: NextRequest) {
     } else {
       restaurant = await prisma.restaurant.create({
         data: {
-          name: body.name || 'THE OLIVE TABLE',
-          tagline: body.tagline || 'Good Food. Great Moments.',
+          name: body.name || 'Mashuup Cafe',
+          tagline: body.tagline || 'Good Food. Good Vibes. Great Times.',
           description: body.description || '',
           about: body.about || '',
           logo: body.logo,
