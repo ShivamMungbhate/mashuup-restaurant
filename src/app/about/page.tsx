@@ -38,7 +38,7 @@ export default async function AboutPage() {
         </div>
       </div>
 
-      <AboutSection restaurant={restaurant} />
+      <AboutSection restaurant={restaurant} showReadMore={false} />
 
       <Footer restaurant={restaurant} hours={hours} />
     </main>

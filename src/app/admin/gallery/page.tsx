@@ -122,8 +122,13 @@ export default function AdminGalleryPage() {
     }
   };
 
+  const inputClass =
+    'w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500';
+  const labelClass =
+    'block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1.5';
+
   return (
-    <div className="flex-1 pb-12">
+    <div className="flex-1 pb-12 bg-gray-50">
       <AdminHeader
         title="Gallery Management"
         subtitle="Upload, edit captions, and delete photos in the public photo gallery"
@@ -143,15 +148,17 @@ export default function AdminGalleryPage() {
 
       <div className="p-6 max-w-6xl mx-auto space-y-6">
         {/* Top Bar */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-xs text-amber-200/80">
-            <ImageIcon className="w-4 h-4 text-amber-400" />
-            <span>Total Gallery Photos: <strong>{gallery.length}</strong></span>
+        <div className="flex items-center justify-between bg-white rounded-2xl border border-gray-200 shadow-sm px-5 py-4">
+          <div className="flex items-center gap-2 text-sm text-gray-600">
+            <ImageIcon className="w-4 h-4 text-green-600" />
+            <span>
+              Total Gallery Photos: <strong className="text-gray-900">{gallery.length}</strong>
+            </span>
           </div>
 
           <button
             onClick={openAddModal}
-            className="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-zinc-950 gold-gradient-bg shadow-lg shadow-amber-500/20 flex items-center gap-2 hover:scale-105 transition"
+            className="px-5 py-2.5 rounded-full text-sm font-bold bg-green-600 hover:bg-green-700 text-white shadow flex items-center gap-2 transition"
           >
             <Plus className="w-4 h-4" /> Upload Gallery Photo
           </button>
@@ -159,15 +166,25 @@ export default function AdminGalleryPage() {
 
         {/* Gallery Grid */}
         {loading ? (
-          <div className="p-12 text-center text-xs text-amber-200">Loading gallery photos...</div>
+          <div className="p-12 text-center text-sm text-green-700 bg-white rounded-3xl border border-green-100">
+            Loading gallery photos...
+          </div>
+        ) : gallery.length === 0 ? (
+          <div className="p-16 text-center bg-white rounded-3xl border border-gray-200 shadow-sm space-y-2">
+            <ImageIcon className="w-10 h-10 text-gray-300 mx-auto" />
+            <p className="text-sm font-bold text-gray-700">No gallery photos yet</p>
+            <p className="text-xs text-gray-400">
+              Click &ldquo;Upload Gallery Photo&rdquo; above to add photos to your website.
+            </p>
+          </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {gallery.map((img) => (
               <div
                 key={img.id}
-                className="glass-card rounded-3xl overflow-hidden border border-amber-500/20 flex flex-col justify-between group hover:border-amber-500/40 transition"
+                className="bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-sm flex flex-col justify-between group hover:border-green-300 hover:shadow-md transition"
               >
-                <div className="relative h-56 w-full bg-zinc-950 overflow-hidden">
+                <div className="relative h-56 w-full bg-gray-100 overflow-hidden">
                   <img
                     src={img.imageUrl}
                     alt={img.caption || 'Gallery photo'}
@@ -175,25 +192,24 @@ export default function AdminGalleryPage() {
                   />
                 </div>
 
-                <div className="p-4 flex items-center justify-between gap-2 border-t border-amber-500/10 bg-zinc-950/60">
-                  <p className="text-xs text-zinc-300 font-light line-clamp-1">
+                <div className="p-4 flex items-center justify-between gap-3 border-t border-gray-100">
+                  <p className="text-xs text-gray-600 line-clamp-2 flex-1">
                     {img.caption || 'No caption'}
                   </p>
-
                   <div className="flex items-center gap-1 shrink-0">
                     <button
                       onClick={() => openEditModal(img)}
-                      className="p-1.5 rounded-xl text-amber-300 hover:bg-amber-500/20 transition"
+                      className="p-2 rounded-xl text-blue-500 hover:bg-blue-50 border border-transparent hover:border-blue-200 transition"
                       title="Edit Caption"
                     >
-                      <Edit2 className="w-3.5 h-3.5" />
+                      <Edit2 className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => setDeletingId(img.id)}
-                      className="p-1.5 rounded-xl text-rose-400 hover:bg-rose-950 transition"
+                      className="p-2 rounded-xl text-red-400 hover:bg-red-50 border border-transparent hover:border-red-200 transition"
                       title="Remove Photo"
                     >
-                      <Trash2 className="w-3.5 h-3.5" />
+                      <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
@@ -205,28 +221,26 @@ export default function AdminGalleryPage() {
 
       {/* Add / Edit Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="glass-card max-w-md w-full p-6 rounded-3xl border border-amber-500/30 shadow-2xl relative">
+        <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white max-w-md w-full p-7 rounded-3xl border border-gray-200 shadow-2xl relative">
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-5 right-5 text-zinc-400 hover:text-white transition"
+              className="absolute top-5 right-5 text-gray-400 hover:text-gray-700 transition"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <h2 className="text-xl font-extrabold text-white mb-6 flex items-center gap-2">
-              <ImageIcon className="w-5 h-5 text-amber-400" />
+            <h2 className="text-lg font-extrabold text-gray-900 mb-5 flex items-center gap-2">
+              <ImageIcon className="w-5 h-5 text-green-600" />
               {editingItem ? 'Edit Photo Caption' : 'Upload Gallery Photo'}
             </h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Photo Preview & Input */}
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-amber-200/80 mb-2">
-                  Photo File or URL *
-                </label>
+                <label className={labelClass}>Photo File or URL *</label>
                 {formData.imageUrl && (
-                  <div className="relative h-44 mb-3 rounded-2xl overflow-hidden border border-amber-500/30">
+                  <div className="relative h-44 mb-3 rounded-2xl overflow-hidden border border-gray-200">
                     <img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover" />
                   </div>
                 )}
@@ -237,9 +251,9 @@ export default function AdminGalleryPage() {
                     value={formData.imageUrl}
                     onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
                     placeholder="https://... or upload"
-                    className="flex-1 bg-zinc-950/90 border border-amber-500/30 rounded-xl px-4 py-2.5 text-xs text-amber-100 placeholder-zinc-500 focus:outline-none focus:border-amber-400"
+                    className={inputClass}
                   />
-                  <label className="px-4 py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold cursor-pointer hover:bg-amber-500/20 transition shrink-0 flex items-center gap-1.5">
+                  <label className="px-4 py-2.5 rounded-xl bg-green-50 border border-green-200 text-green-700 text-sm font-semibold cursor-pointer hover:bg-green-100 transition shrink-0 flex items-center gap-1.5 whitespace-nowrap">
                     <Upload className="w-3.5 h-3.5" />
                     {uploading ? 'Uploading...' : 'Upload'}
                     <input
@@ -254,29 +268,27 @@ export default function AdminGalleryPage() {
 
               {/* Caption */}
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-amber-200/80 mb-1">
-                  Caption / Description
-                </label>
+                <label className={labelClass}>Caption / Description</label>
                 <textarea
                   rows={3}
                   value={formData.caption}
                   onChange={(e) => setFormData({ ...formData, caption: e.target.value })}
-                  placeholder="e.g. Main dining hall illuminated by warm evening lights"
-                  className="w-full bg-zinc-950/90 border border-amber-500/30 rounded-xl px-4 py-2.5 text-xs text-amber-100 placeholder-zinc-500 focus:outline-none focus:border-amber-400"
+                  placeholder="e.g. Cozy seating area at Mashuup Cafe"
+                  className={inputClass}
                 />
               </div>
 
-              <div className="flex justify-end gap-3 pt-4 border-t border-amber-500/10">
+              <div className="flex justify-end gap-3 pt-4 border-t border-gray-100">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2.5 rounded-xl text-xs font-semibold text-zinc-300 bg-white/5 border border-white/10 hover:bg-white/10 transition"
+                  className="px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 transition"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-zinc-950 gold-gradient-bg shadow-lg shadow-amber-500/20 hover:scale-[1.02] active:scale-[0.98] transition"
+                  className="px-6 py-2.5 rounded-xl text-sm font-bold bg-green-600 hover:bg-green-700 text-white shadow transition"
                 >
                   {editingItem ? 'Save Caption' : 'Add to Gallery'}
                 </button>

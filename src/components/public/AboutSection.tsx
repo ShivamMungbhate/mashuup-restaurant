@@ -7,9 +7,10 @@ import { Restaurant } from '@/types';
 
 interface AboutSectionProps {
   restaurant: Restaurant | null;
+  showReadMore?: boolean;
 }
 
-export default function AboutSection({ restaurant }: AboutSectionProps) {
+export default function AboutSection({ restaurant, showReadMore = true }: AboutSectionProps) {
   const name = restaurant?.name || 'Mashuup';
   const aboutText =
     restaurant?.about ||
@@ -84,15 +85,17 @@ export default function AboutSection({ restaurant }: AboutSectionProps) {
               </div>
             </div>
 
-            <div className="pt-4">
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider text-white green-gradient-bg shadow-lg shadow-green-800/20 hover:shadow-green-800/40 hover:scale-105 transition group"
-              >
-                Read Full Story
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
+            {showReadMore && (
+              <div className="pt-4">
+                <Link
+                  href="/about"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider text-white green-gradient-bg shadow-lg shadow-green-800/20 hover:shadow-green-800/40 hover:scale-105 transition group"
+                >
+                  Read Full Story
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
